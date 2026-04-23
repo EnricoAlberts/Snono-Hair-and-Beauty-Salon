@@ -1,0 +1,2076 @@
+<!--
+==========================================================
+  GLAMOUR HAIR STUDIO — PERSONALISATION CHECKLIST
+  Change the following before going live with a real salon:
+==========================================================
+
+  1. BUSINESS NAME (4 places):
+     - <title> tag in <head>  →  "Glamour Hair Studio | ..."
+     - .logo-text in <nav>    →  "Glamour Hair Studio"
+     - #about heading         →  "About Glamour Hair Studio"
+     - #footer .footer-brand-name →  "Glamour Hair Studio"
+
+  2. PHONE NUMBER (3 places):
+     - href="tel:0110000000"              → click-to-call link
+     - href="https://wa.me/27110000000"   → WhatsApp contact button
+     - href="https://wa.me/27110000000"   → floating WhatsApp button
+     (Replace 27110000000 with international format: 27 + number without leading 0)
+
+  3. ADDRESS (1 place):
+     - "123 Main Street, Johannesburg"    → in #contact section
+
+  4. SUBURB / AREA (1 place):
+     - "in the heart of Johannesburg"     → hero subheading
+
+  5. SERVICE PRICES (6 places — one per .service-card):
+     - Hair Cuts & Styling  → from R150
+     - Colour & Highlights  → from R350
+     - Keratin Treatments   → from R800
+     - Braids & Extensions  → from R400
+     - Relaxers & Perms     → from R300
+     - Bridal Hair          → from R600
+
+  6. BUSINESS HOURS (1 place):
+     - Mon–Fri 8am–6pm, Sat 8am–4pm, Sun Closed → #contact hours table
+
+  7. ESTABLISHED YEAR (1 place):
+     - "est. 2015" → about section paragraph
+
+  8. WHATSAPP NUMBER in form confirmation message (1 place):
+     - "confirm your appointment on WhatsApp" — already generic, no change needed
+
+==========================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Glamour Hair Studio — Premium hair services in the heart of Johannesburg" />
+  <!-- CHANGE: business name in title -->
+  <title>Glamour Hair Studio | Premium Hair Salon Johannesburg</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================
+       CSS CUSTOM PROPERTIES
+    ========================================================== */
+    :root {
+      --primary:        #b76e79;
+      --primary-light:  #cc909a;
+      --primary-dark:   #9a5863;
+      --primary-pale:   #f2dde0;
+      --primary-ultra:  #faf0f1;
+      --bg:             #f7e7ce;
+      --bg-light:       #fdf6ee;
+      --text:           #2c2c2c;
+      --text-light:     #6b6b6b;
+      --text-muted:     #9a9a9a;
+      --white:          #ffffff;
+      --dark:           #1a1a1a;
+      --dark-2:         #2c2c2c;
+      --gold:           #c9a96e;
+      --gold-light:     #e8d5b0;
+      --whatsapp:       #25d366;
+      --shadow-sm:  0 2px 10px rgba(44,44,44,0.07);
+      --shadow-md:  0 8px 32px rgba(44,44,44,0.11);
+      --shadow-lg:  0 20px 60px rgba(44,44,44,0.15);
+      --shadow-rose: 0 12px 40px rgba(183,110,121,0.3);
+      --radius:    14px;
+      --radius-lg: 24px;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================================
+       RESET & BASE
+    ========================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--bg-light);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img  { max-width: 100%; display: block; }
+    a    { text-decoration: none; color: inherit; }
+    ul   { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ==========================================================
+       TYPOGRAPHY HELPERS
+    ========================================================== */
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-header .section-subtitle { margin: 0 auto; }
+
+    /* ==========================================================
+       SCROLL FADE-IN ANIMATIONS
+    ========================================================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(44px);
+      transition: opacity 0.72s var(--ease), transform 0.72s var(--ease);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-up.d1 { transition-delay: 0.08s; }
+    .fade-up.d2 { transition-delay: 0.16s; }
+    .fade-up.d3 { transition-delay: 0.24s; }
+    .fade-up.d4 { transition-delay: 0.32s; }
+    .fade-up.d5 { transition-delay: 0.40s; }
+    .fade-up.d6 { transition-delay: 0.48s; }
+
+    /* ==========================================================
+       BUTTONS
+    ========================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 15px 34px;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-rose);
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.55);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--white);
+    }
+
+    .btn-outline-rose {
+      background: transparent;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .btn-outline-rose:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       NAVIGATION
+    ========================================================== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 22px 0;
+      transition: var(--transition);
+    }
+
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.07);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .logo-gem {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-gem svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 1.8; }
+
+    /* CHANGE: business name */
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      transition: color 0.3s;
+      letter-spacing: 0.01em;
+    }
+    #navbar.scrolled .logo-text { color: var(--text); }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.82);
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--primary-light);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    #navbar.scrolled .nav-links a       { color: var(--text-light); }
+    #navbar.scrolled .nav-links a:hover { color: var(--primary); }
+    #navbar.scrolled .nav-links a::after { background: var(--primary); }
+
+    .nav-cta { flex-shrink: 0; }
+    .nav-cta .btn { padding: 11px 24px; font-size: 0.78rem; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1100;
+      position: relative;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+    #navbar.scrolled .hamburger span { background: var(--text); }
+    #navbar.mobile-open .hamburger span { background: var(--white); }
+
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile overlay */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--dark-2);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 40px;
+    }
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--white);
+      transition: color 0.3s;
+      letter-spacing: 0.01em;
+    }
+    .mobile-nav a:hover { color: var(--primary-light); }
+    .mobile-nav .btn { margin-top: 16px; font-size: 0.9rem; padding: 14px 44px; }
+
+    .mobile-nav-close {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.8rem;
+      transition: color 0.3s;
+    }
+    .mobile-nav-close:hover { color: var(--white); }
+
+    /* ==========================================================
+       HERO SECTION
+    ========================================================== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #18090e;
+    }
+
+    /* Layered gradient base */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, #1c0c12 0%, #2e1520 35%, #3a1c2a 65%, #150a0e 100%);
+    }
+
+    /* Animated glow blobs */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 700px at 75% 25%, rgba(183,110,121,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 600px 800px at 15% 80%, rgba(201,169,110,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 400px 400px at 88% 72%, rgba(183,110,121,0.1) 0%, transparent 60%);
+      animation: heroBloom 10s ease-in-out infinite alternate;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 350px 350px at 20% 18%, rgba(247,231,206,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 250px 250px at 85% 88%, rgba(247,231,206,0.04) 0%, transparent 70%);
+      animation: heroBloom2 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroBloom {
+      0%   { transform: scale(1) translate(0, 0);       opacity: 0.8; }
+      50%  { transform: scale(1.06) translate(18px,-8px); opacity: 1;   }
+      100% { transform: scale(1.03) translate(-12px,14px); opacity: 0.88; }
+    }
+    @keyframes heroBloom2 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(28px, -18px); }
+    }
+
+    /* Subtle diagonal texture */
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.012) 0px,
+          rgba(255,255,255,0.012) 1px,
+          transparent 1px,
+          transparent 28px
+        );
+      pointer-events: none;
+    }
+
+    /* Floating particles container */
+    .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(183,110,121,0.45);
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(110vh) scale(0);   opacity: 0;   }
+      8%   { opacity: 1; }
+      88%  { opacity: 0.4; }
+      100% { transform: translateY(-80px)  scale(1.6); opacity: 0; }
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 780px;
+      padding: 120px 0 80px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      margin-bottom: 30px;
+      animation: fadeDown 0.85s ease both;
+    }
+    .hero-badge .stars { color: #ffd700; font-size: 0.8rem; letter-spacing: 1px; }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 26px;
+      animation: fadeUp 0.9s ease 0.22s both;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--primary-light);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.8vw, 1.18rem);
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 44px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      animation: fadeUp 0.9s ease 0.4s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.9s ease 0.58s both;
+    }
+
+    /* Scroll cue */
+    .hero-scroll-cue {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: scrollBounce 2.4s ease-in-out infinite;
+    }
+    .hero-scroll-cue .scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    }
+
+    @keyframes scrollBounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      55%     { transform: translateX(-50%) translateY(9px); }
+    }
+
+    /* ==========================================================
+       TRUST BAR
+    ========================================================== */
+    #trust-bar {
+      background: var(--dark-2);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .trust-bar-inner {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .trust-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 28px 32px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.3s;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-item:hover { background: rgba(183,110,121,0.08); }
+
+    .trust-icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      background: rgba(183,110,121,0.18);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trust-icon svg { width: 22px; height: 22px; stroke: var(--primary-light); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    .trust-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .trust-text span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================
+       SERVICES SECTION
+    ========================================================== */
+    #services {
+      background: var(--bg-light);
+      padding: 108px 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-bottom: 52px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px 34px;
+      border: 1.5px solid transparent;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-pale);
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      width: 56px; height: 56px;
+      background: var(--primary-ultra);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      transition: var(--transition);
+    }
+    .service-icon svg { width: 26px; height: 26px; stroke: var(--primary); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .service-card:hover .service-icon { background: var(--primary); transform: scale(1.08) rotate(-4deg); }
+    .service-card:hover .service-icon svg { stroke: white; }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .service-desc {
+      font-size: 0.855rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .service-price {
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .services-cta { text-align: center; }
+
+    /* ==========================================================
+       ABOUT SECTION
+    ========================================================== */
+    #about {
+      background: var(--bg);
+      padding: 108px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(183,110,121,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 84px;
+      align-items: center;
+    }
+
+    .about-text .section-subtitle { max-width: 100%; margin-bottom: 28px; }
+
+    /* Scissors divider */
+    .scissors-divider {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 36px 0;
+    }
+    .scissors-divider .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--primary), rgba(183,110,121,0.15));
+    }
+    .scissors-divider .line.r { background: linear-gradient(90deg, rgba(183,110,121,0.15), var(--primary)); }
+    .scissors-icon { color: var(--primary); display: flex; align-items: center; }
+    .scissors-icon svg { width: 22px; height: 22px; }
+
+    /* Stat boxes */
+    .about-stats {
+      display: flex;
+      gap: 18px;
+      margin-top: 8px;
+    }
+
+    .stat-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      text-align: center;
+      flex: 1;
+      box-shadow: var(--shadow-sm);
+      border-bottom: 3px solid var(--primary);
+      transition: var(--transition);
+    }
+    .stat-box:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+    .stat-value {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* About visual right side */
+    .about-visual { position: relative; }
+
+    .about-card {
+      background: linear-gradient(145deg, #2e1322 0%, #4d1f33 45%, #3a1428 100%);
+      border-radius: var(--radius-lg);
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: -70px; right: -70px;
+      width: 220px; height: 220px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .about-card::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: -50px;
+      width: 170px; height: 170px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+    }
+
+    .about-card-ornament {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(183,110,121,0.25);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .about-card-text {
+      font-size: 1.05rem;
+      line-height: 1.78;
+      color: rgba(255,255,255,0.82);
+      position: relative;
+      z-index: 1;
+    }
+    .about-card-text em {
+      font-style: normal;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+    .about-card-sig {
+      margin-top: 30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.45);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Floating accent badge on about card */
+    .about-year-badge {
+      position: absolute;
+      top: -18px; right: 36px;
+      background: linear-gradient(135deg, var(--gold), #a87e40);
+      color: white;
+      border-radius: 50px;
+      padding: 10px 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(201,169,110,0.45);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    /* Floating card at bottom-left */
+    .about-float {
+      position: absolute;
+      bottom: -20px; left: -22px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .about-float-icon {
+      width: 40px; height: 40px;
+      background: var(--primary-ultra);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .about-float strong {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .about-float span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================
+       GALLERY SECTION
+    ========================================================== */
+    #gallery {
+      background: var(--dark-2);
+      padding: 108px 0;
+    }
+    #gallery .section-label { color: var(--primary-light); }
+    #gallery .section-title { color: var(--white); }
+    #gallery .section-subtitle { color: rgba(255,255,255,0.55); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      cursor: pointer;
+    }
+
+    .gallery-fill {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.55s var(--ease);
+    }
+    .gallery-item:hover .gallery-fill { transform: scale(1.07); }
+
+    /* Each gradient mimics a real hair photo palette */
+    .gallery-item:nth-child(1) .gallery-fill { background: linear-gradient(158deg, #d4aa7d 0%, #8b5e2a 45%, #4a2e10 100%); }
+    .gallery-item:nth-child(2) .gallery-fill { background: linear-gradient(140deg, #2e1a3d 0%, #5a2e6b 45%, #3a1a4d 100%); }
+    .gallery-item:nth-child(3) .gallery-fill { background: linear-gradient(152deg, #5c3320 0%, #2e180c 50%, #100a05 100%); }
+    .gallery-item:nth-child(4) .gallery-fill { background: linear-gradient(165deg, #f0ddd4 0%, #c99080 40%, #7a4040 100%); }
+    .gallery-item:nth-child(5) .gallery-fill { background: linear-gradient(145deg, #e8d5a3 0%, #c9a050 40%, #7a5820 100%); }
+    .gallery-item:nth-child(6) .gallery-fill { background: linear-gradient(155deg, #8b3838 0%, #5c1c1c 40%, #2c0e0e 100%); }
+
+    /* Decorative light orb on each */
+    .gallery-fill::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle 100px at 30% 28%, rgba(255,255,255,0.12) 0%, transparent 70%),
+        radial-gradient(circle 60px at 75% 75%, rgba(255,255,255,0.07) 0%, transparent 70%);
+    }
+
+    /* Overlay on hover */
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20,8,12,0.88) 0%, rgba(20,8,12,0.3) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 26px 20px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-style-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .gallery-book-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-light);
+      border: 1px solid rgba(183,110,121,0.6);
+      padding: 6px 18px;
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+    .gallery-item:hover .gallery-book-tag {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    /* ==========================================================
+       CONTACT / BOOKING SECTION
+    ========================================================== */
+    #contact {
+      background: var(--bg-light);
+      padding: 108px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    /* Info side */
+    .contact-info .section-title { font-size: clamp(1.6rem, 2.8vw, 2.1rem); }
+
+    .contact-tagline {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 44px;
+      line-height: 1.65;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .contact-detail-icon {
+      width: 46px; height: 46px;
+      flex-shrink: 0;
+      background: var(--primary-ultra);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-detail-icon svg { width: 20px; height: 20px; stroke: var(--primary); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .contact-detail-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .contact-detail-value {
+      font-size: 0.93rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .contact-detail-value a:hover { color: var(--primary); }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--whatsapp);
+      color: white;
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-size: 0.855rem;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: var(--transition);
+    }
+    .whatsapp-btn:hover { background: #1daa52; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(37,211,102,0.35); }
+    .whatsapp-btn svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+
+    /* Hours table */
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    .hours-table tr { border-bottom: 1px solid rgba(0,0,0,0.045); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 7px 0; font-size: 0.875rem; color: var(--text-light); }
+    .hours-table td:last-child { text-align: right; font-weight: 500; color: var(--text); }
+    .hours-table .closed td { color: var(--text-muted); }
+    .hours-table .closed td:last-child { color: var(--text-muted); font-weight: 400; }
+
+    /* Booking form side */
+    .booking-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 52px 48px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      margin-bottom: 34px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--bg-light);
+      border: 1.5px solid rgba(44,44,44,0.1);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: var(--transition);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(183,110,121,0.1);
+    }
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: var(--text-muted); }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b76e79' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 17px center;
+      padding-right: 44px;
+      cursor: pointer;
+    }
+
+    .form-textarea { resize: vertical; min-height: 96px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 17px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+    .form-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-rose);
+    }
+
+    /* Form success state */
+    #formFields { transition: opacity 0.3s; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px 16px 8px;
+    }
+    .form-success.show { display: block; }
+
+    .success-ring {
+      width: 72px; height: 72px;
+      background: rgba(37,211,102,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+    }
+    .success-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .success-msg {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================
+       FLOATING WHATSAPP BUTTON
+    ========================================================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 800;
+      width: 62px; height: 62px;
+      background: var(--whatsapp);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.12) translateY(-4px);
+      box-shadow: 0 16px 44px rgba(37,211,102,0.55);
+    }
+    .whatsapp-float svg { width: 32px; height: 32px; fill: white; position: relative; z-index: 1; }
+
+    /* Pulse rings */
+    .whatsapp-float::before,
+    .whatsapp-float::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid var(--whatsapp);
+      animation: waPulse 2.4s ease-out infinite;
+    }
+    .whatsapp-float::after { animation-delay: 0.7s; }
+
+    @keyframes waPulse {
+      0%   { transform: scale(1);   opacity: 0.65; }
+      100% { transform: scale(1.6); opacity: 0;    }
+    }
+
+    /* ==========================================================
+       FOOTER
+    ========================================================== */
+    #footer {
+      background: var(--dark);
+      color: white;
+      padding: 80px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 60px;
+    }
+
+    /* CHANGE: footer brand name */
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+
+    .footer-tagline {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.875rem;
+      line-height: 1.68;
+      max-width: 280px;
+      margin-bottom: 28px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+    }
+    .social-btn:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+    .social-btn svg { width: 17px; height: 17px; fill: currentColor; }
+
+    .footer-col-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 22px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.875rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--primary-light); }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 32px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-copy {
+      color: rgba(255,255,255,0.28);
+      font-size: 0.78rem;
+    }
+    .footer-copy span { color: var(--primary-light); }
+    .footer-love {
+      color: rgba(255,255,255,0.28);
+      font-size: 0.78rem;
+    }
+
+    /* ==========================================================
+       RESPONSIVE BREAKPOINTS
+    ========================================================== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid    { gap: 52px; }
+      .footer-grid   { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      /* Nav */
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      /* Hero */
+      .hero-title { font-size: 2.4rem; }
+      .hero-buttons .btn { padding: 13px 22px; font-size: 0.82rem; }
+      .hero-content { padding: 110px 0 80px; }
+
+      /* Trust bar */
+      .trust-bar-inner {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .trust-bar-inner::-webkit-scrollbar { display: none; }
+      .trust-item { padding: 22px 24px; flex-shrink: 0; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 52px; }
+      .about-visual { margin-top: 20px; }
+      .about-year-badge { top: -14px; right: 16px; }
+      .about-float { left: -10px; bottom: -14px; }
+      .about-stats { gap: 12px; }
+
+      /* Gallery */
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 52px; }
+      .booking-form-wrap { padding: 36px 26px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      /* Float button */
+      .whatsapp-float { bottom: 24px; right: 20px; width: 56px; height: 56px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .hero-title { font-size: 2rem; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; justify-content: center; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .about-stats { flex-direction: column; }
+      .service-card { padding: 30px 24px; }
+      .about-float { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- CHANGE: business name in logo -->
+      <a href="#hero" class="nav-logo">
+        <div class="logo-gem">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 8l10 14L22 8z"/><path d="M2 8h20M7 8l5-6 5 6"/></svg>
+        </div>
+        <span class="logo-text">Glamour Hair Studio</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-primary">Book Now</a>
+      </div>
+
+      <div class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-close" id="mobileNavClose">&#215;</div>
+  <a href="#hero"     class="mobile-link">Home</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#gallery"  class="mobile-link">Gallery</a>
+  <a href="#about"    class="mobile-link">About</a>
+  <a href="#contact"  class="mobile-link">Contact</a>
+  <a href="#contact"  class="btn btn-primary mobile-link">Book Now</a>
+</div>
+
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="stars">★★★★★</span>
+        <span>5 Star Rated on Google</span>
+      </div>
+
+      <h1 class="hero-title">
+        Where Beauty<br>
+        <em>Meets Perfection</em>
+      </h1>
+
+      <!-- CHANGE: suburb/area in subheading -->
+      <p class="hero-subtitle">
+        Premium hair services in the heart of Johannesburg
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Book an Appointment</a>
+        <a href="#services" class="btn btn-outline-white">View Our Services</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRUST BAR
+============================================================ -->
+<div id="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-1a9 9 0 0118 0v1"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>10+ Years</strong>
+          <span>Experience</span>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>500+ Clients</strong>
+          <span>Happy &amp; Returning</span>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>5 Star Rating</strong>
+          <span>Google Verified</span>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Walk-ins Welcome</strong>
+          <span>No Booking Required</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SERVICES SECTION
+============================================================ -->
+<section id="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">
+        From everyday cuts to full bridal transformations — our stylists craft every look with precision and passion.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- CHANGE: service prices below -->
+      <div class="service-card fade-up d1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 3a3 3 0 110 6 3 3 0 010-6zM18 15a3 3 0 110 6 3 3 0 010-6z"/><path d="M8.59 5.59L19 16M17.41 16.41L7 6"/></svg>
+        </div>
+        <h3 class="service-name">Hair Cuts &amp; Styling</h3>
+        <p class="service-desc">Precision cuts tailored to your face shape, lifestyle and personal style. From classic bobs to modern layers.</p>
+        <span class="service-price">From R150</span>
+      </div>
+
+      <div class="service-card fade-up d2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/><path d="M2 12h20"/></svg>
+        </div>
+        <h3 class="service-name">Colour &amp; Highlights</h3>
+        <p class="service-desc">Balayage, ombré, full colour and highlights using premium products for vibrant, long-lasting results.</p>
+        <span class="service-price">From R350</span>
+      </div>
+
+      <div class="service-card fade-up d3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="service-name">Keratin Treatments</h3>
+        <p class="service-desc">Professional smoothing treatments that eliminate frizz and leave your hair silky, shiny and manageable for months.</p>
+        <span class="service-price">From R800</span>
+      </div>
+
+      <div class="service-card fade-up d4">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>
+        </div>
+        <h3 class="service-name">Braids &amp; Extensions</h3>
+        <p class="service-desc">Box braids, knotless braids, twists and professional hair extensions installed with care and precision.</p>
+        <span class="service-price">From R400</span>
+      </div>
+
+      <div class="service-card fade-up d5">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 015 5c0 5-5 13-5 13S7 12 7 7a5 5 0 015-5z"/><circle cx="12" cy="7" r="2"/></svg>
+        </div>
+        <h3 class="service-name">Relaxers &amp; Perms</h3>
+        <p class="service-desc">Expert chemical relaxers and perms to transform your texture with minimal damage and maximum results.</p>
+        <span class="service-price">From R300</span>
+      </div>
+
+      <div class="service-card fade-up d6">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3 class="service-name">Bridal Hair</h3>
+        <p class="service-desc">Unforgettable bridal updos, blowouts and styling for your most special day — trials included.</p>
+        <span class="service-price">From R600</span>
+      </div>
+
+    </div>
+
+    <div class="services-cta fade-up">
+      <a href="#contact" class="btn btn-primary">Book Your Service</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT SECTION
+============================================================ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Text side -->
+      <div class="about-text">
+        <span class="section-label fade-up">Our Story</span>
+        <!-- CHANGE: business name in heading -->
+        <h2 class="section-title fade-up d1">About Glamour Hair Studio</h2>
+
+        <div class="scissors-divider fade-up d2">
+          <div class="line"></div>
+          <div class="scissors-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+              <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+              <path d="M20 4L8.12 12M14.47 14.48L20 20M8.12 12L14.47 14.48"/>
+            </svg>
+          </div>
+          <div class="line r"></div>
+        </div>
+
+        <!-- CHANGE: established year in paragraph -->
+        <p class="section-subtitle fade-up d3">
+          Founded in 2015, Glamour Hair Studio was born from a simple belief — that everyone deserves to feel extraordinary. Our team of passionate, experienced stylists uses only premium products to deliver results that go beyond beautiful. From your very first visit, you'll feel the difference: a warm, welcoming space where your comfort and confidence come first.
+        </p>
+
+        <div class="about-stats fade-up d4">
+          <div class="stat-box">
+            <span class="stat-value">10</span>
+            <span class="stat-label">Years</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Clients</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-value">5★</span>
+            <span class="stat-label">Rated</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual side -->
+      <div class="about-visual fade-up d3">
+        <div class="about-card">
+          <span class="about-card-ornament">"</span>
+          <p class="about-card-text">
+            Hair is our art, and every client is our canvas. We don't just style hair — we create <em>confidence</em>, one appointment at a time. Whether you want a subtle refresh or a bold transformation, we bring your vision to life with skill, care and a whole lot of love.
+          </p>
+          <p class="about-card-sig">— The Glamour Team</p>
+        </div>
+        <!-- CHANGE: established year on badge -->
+        <div class="about-year-badge">Est. 2015</div>
+
+        <div class="about-float">
+          <div class="about-float-icon">⭐</div>
+          <div>
+            <strong>Google Rated</strong>
+            <span>5 Stars — 120+ Reviews</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALLERY SECTION
+============================================================ -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-label">Our Portfolio</span>
+      <h2 class="section-title">Our Work</h2>
+      <p class="section-subtitle">
+        Every style tells a story. Browse a glimpse of the transformations we create every day.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item fade-up d1">
+        <div class="gallery-fill"></div>
+        <div class="gallery-overlay">
+          <p class="gallery-style-name">Balayage</p>
+          <span class="gallery-book-tag">Book this style</span>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-up d2">
+        <div class="gallery-fill"></div>
+        <div class="gallery-overlay">
+          <p class="gallery-style-name">Box Braids</p>
+          <span class="gallery-book-tag">Book this style</span>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-up d3">
+        <div class="gallery-fill"></div>
+        <div class="gallery-overlay">
+          <p class="gallery-style-name">Keratin Blowout</p>
+          <span class="gallery-book-tag">Book this style</span>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-up d4">
+        <div class="gallery-fill"></div>
+        <div class="gallery-overlay">
+          <p class="gallery-style-name">Bridal Updo</p>
+          <span class="gallery-book-tag">Book this style</span>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-up d5">
+        <div class="gallery-fill"></div>
+        <div class="gallery-overlay">
+          <p class="gallery-style-name">Highlights</p>
+          <span class="gallery-book-tag">Book this style</span>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-up d6">
+        <div class="gallery-fill"></div>
+        <div class="gallery-overlay">
+          <p class="gallery-style-name">Natural Curls</p>
+          <span class="gallery-book-tag">Book this style</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT & BOOKING SECTION
+============================================================ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Info side -->
+      <div class="contact-info fade-up">
+        <span class="section-label">Get in Touch</span>
+        <!-- CHANGE: business name in heading -->
+        <h2 class="section-title">Glamour Hair Studio</h2>
+        <p class="contact-tagline">
+          Ready for your next transformation? Book an appointment or just pop in — walk-ins are always welcome.
+        </p>
+
+        <!-- CHANGE: address -->
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <p class="contact-detail-label">Address</p>
+            <!-- CHANGE: address -->
+            <p class="contact-detail-value">123 Main Street<br>Johannesburg, Gauteng</p>
+          </div>
+        </div>
+
+        <!-- CHANGE: phone number (href and display) -->
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.28h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"/></svg>
+          </div>
+          <div>
+            <p class="contact-detail-label">Phone</p>
+            <!-- CHANGE: phone number -->
+            <p class="contact-detail-value">
+              <a href="tel:0110000000">011 000 0000</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- CHANGE: WhatsApp number in href (international format: 27 + number) -->
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </div>
+          <div>
+            <p class="contact-detail-label">WhatsApp</p>
+            <!-- CHANGE: WhatsApp number -->
+            <a href="https://wa.me/27110000000?text=Hi%20Glamour%20Hair%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." class="whatsapp-btn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- CHANGE: business hours -->
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div style="flex:1">
+            <p class="contact-detail-label">Hours</p>
+            <table class="hours-table">
+              <tr><td>Mon – Fri</td><td>8:00am – 6:00pm</td></tr>
+              <tr><td>Saturday</td><td>8:00am – 4:00pm</td></tr>
+              <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking form side -->
+      <div class="booking-form-wrap fade-up d2">
+        <div id="formFields">
+          <h3 class="form-title">Book an Appointment</h3>
+          <p class="form-subtitle">Fill in your details and we'll confirm via WhatsApp.</p>
+
+          <form id="bookingForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fname">Full Name</label>
+                <input class="form-input" type="text" id="fname" name="name" placeholder="Jane Dlamini" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fphone">Phone Number</label>
+                <input class="form-input" type="tel" id="fphone" name="phone" placeholder="071 000 0000" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="fservice">Service Required</label>
+              <select class="form-select" id="fservice" name="service" required>
+                <option value="" disabled selected>Choose a service…</option>
+                <option value="cuts">Hair Cuts &amp; Styling — from R150</option>
+                <option value="colour">Colour &amp; Highlights — from R350</option>
+                <option value="keratin">Keratin Treatment — from R800</option>
+                <option value="braids">Braids &amp; Extensions — from R400</option>
+                <option value="relaxer">Relaxers &amp; Perms — from R300</option>
+                <option value="bridal">Bridal Hair — from R600</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="fdate">Preferred Date</label>
+              <input class="form-input" type="date" id="fdate" name="date" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="fmessage">Message <span style="font-weight:400;letter-spacing:0;text-transform:none;font-size:0.75rem;color:var(--text-muted)">(optional)</span></label>
+              <textarea class="form-textarea" id="fmessage" name="message" placeholder="Any special requests or questions…"></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">Book Appointment</button>
+          </form>
+        </div>
+
+        <!-- Success message -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-ring">✓</div>
+          <h3 class="success-title">Booking Request Sent!</h3>
+          <p class="success-msg">
+            Thank you! We will confirm your appointment on WhatsApp shortly.<br><br>
+            Can't wait to see you at the studio. 💐
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FLOATING WHATSAPP BUTTON
+============================================================ -->
+<!-- CHANGE: WhatsApp number in href -->
+<a href="https://wa.me/27110000000?text=Hi%20Glamour%20Hair%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand column -->
+      <div>
+        <!-- CHANGE: business name in footer -->
+        <p class="footer-brand-name">Glamour Hair Studio</p>
+        <p class="footer-tagline">
+          Where beauty meets perfection. Premium hair services crafted with passion, expertise and love — right in the heart of Johannesburg.
+        </p>
+        <div class="footer-social">
+          <!-- Instagram -->
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="#" class="social-btn" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34l.04-8.4a8.23 8.23 0 004.79 1.53v-3.4a4.85 4.85 0 01-1.07-.34z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <p class="footer-col-title">Quick Links</p>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <!-- Services links -->
+      <div>
+        <p class="footer-col-title">Our Services</p>
+        <ul class="footer-links">
+          <li><a href="#contact">Hair Cuts &amp; Styling</a></li>
+          <li><a href="#contact">Colour &amp; Highlights</a></li>
+          <li><a href="#contact">Keratin Treatments</a></li>
+          <li><a href="#contact">Braids &amp; Extensions</a></li>
+          <li><a href="#contact">Bridal Hair</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">
+        &copy; 2025 <span>Glamour Hair Studio</span>. All rights reserved.
+      </p>
+      <p class="footer-love">
+        Made with ♥ in Johannesburg
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  /* -------------------------------------------------------
+     1. Sticky navbar
+  ------------------------------------------------------- */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 55);
+  }, { passive: true });
+
+  /* -------------------------------------------------------
+     2. Hamburger / mobile nav
+  ------------------------------------------------------- */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileNav  = document.getElementById('mobileNav');
+  const navClose   = document.getElementById('mobileNavClose');
+
+  function openMobile() {
+    hamburger.classList.add('active');
+    mobileNav.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.contains('open') ? closeMobile() : openMobile();
+  });
+
+  navClose.addEventListener('click', closeMobile);
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', closeMobile);
+  });
+
+  /* -------------------------------------------------------
+     3. Scroll fade-in (Intersection Observer)
+  ------------------------------------------------------- */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* -------------------------------------------------------
+     4. Booking form submission
+  ------------------------------------------------------- */
+  const form        = document.getElementById('bookingForm');
+  const formFields  = document.getElementById('formFields');
+  const formSuccess = document.getElementById('formSuccess');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formFields.style.opacity = '0';
+      setTimeout(() => {
+        formFields.style.display = 'none';
+        formSuccess.classList.add('show');
+      }, 280);
+    });
+  }
+
+  /* Set minimum date to today for date picker */
+  const dateInput = document.getElementById('fdate');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+  }
+
+  /* -------------------------------------------------------
+     5. Hero floating particles (CSS-only animation, JS spawns them)
+  ------------------------------------------------------- */
+  (function createParticles() {
+    const container = document.getElementById('particles');
+    if (!container) return;
+    const count = 20;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 5 + 2;
+      const left = Math.random() * 100;
+      const dur  = Math.random() * 16 + 10;
+      const del  = -(Math.random() * 18);
+      const opa  = (Math.random() * 0.35 + 0.1).toFixed(2);
+      p.style.cssText =
+        `width:${size}px;height:${size}px;left:${left}%;` +
+        `animation-duration:${dur}s;animation-delay:${del}s;opacity:${opa};` +
+        `background:rgba(${Math.random() > 0.5 ? '183,110,121' : '201,169,110'},0.5);`;
+      container.appendChild(p);
+    }
+  })();
+
+  /* -------------------------------------------------------
+     6. Smooth active nav link highlight on scroll
+  ------------------------------------------------------- */
+  const sections  = document.querySelectorAll('section[id], div[id="trust-bar"]');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navAnchors.forEach(a => {
+          a.style.color = '';
+          if (a.getAttribute('href') === '#' + id) {
+            a.style.color = navbar.classList.contains('scrolled')
+              ? 'var(--primary)'
+              : 'var(--white)';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+
+</body>
+</html>
